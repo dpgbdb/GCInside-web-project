@@ -51,9 +51,8 @@
                             <ul class="con_list">
                                 <li class="hitL" th:each="article : ${article}">
                                     <a th:href="@{/m/board/view/(id='HIT',no=${article.article_num})}" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img th:src="@{${#strings.substringAfter(article.file_url, '/GCInside')}}" />
-                                            <!--<img th:src="@{#strings.substring(article.file_url, '/GCInside')}" />-->
+                                        <span class="img_box" >
+                                            <img style="width:100%;" th:src="@{${#strings.substringAfter(article.file_url, '/GCInside')}}" />
                                         </span>
                                         <div class="txt_box">
                                             <strong class="tit" th:text="${article.article_title}"></strong>
@@ -189,14 +188,14 @@
                                             <span class="total_num" id="recomTotal">6</span>
                                         </div>
                                         <div class="btn_box">
-                                            <button type="button" class="sp_main btn_prev" id="recom_prev"></button>
-                                            <button type="button" class="sp_main btn_next on" id="recom_next"></button>
+                                            <button type="button" class="sp_main btn_prev" id="recom_prev"><span class="blind">이전</span></button>
+                                            <button type="button" class="sp_main btn_next on" id="recom_next"><span class="blind">다음</span></button>
                                         </div>
                                     </div>
                                 </div>
                             </header>
                             <section class="tab_container clear recomSection recom0">
-                                <h3 class="blind"></h3>
+                                <h3 class="blind">전체 개념글</h3>
                                 <div class="wraping">
                                     <div class="tab_content">
                                         <div class="tab_header">
@@ -277,9 +276,32 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </section>
                         </div>
+                        <script id="recom-tmpl" type="text/x-jquery-tmpl">
+                          <section class="tab_container clear recomSection recom${page}">
+                            <h3 class="blind">${cate_name} 개념글</h3>
+
+                            {{each(prop, values) data}}
+                            <div class="wraping">
+                              <div class="tab_content">
+                                <div class="tab_header">
+                                  <h4 class="tit"><a href="/GCInside/m/board/lists/?id=${values[0].gall_id}" class="main_log" section_code="recommend" target="_blank">${values[0].gallName} 갤러리<span class="sp_img img_deco"></span></a></h4>
+                                </div>
+                                <ul class="con_list txt">
+
+                                  {{each(i, val) values}}
+                                  <li><a href="${val.url}" target="_blank">${val.title}</a></li>
+                                  {{/each}}
+
+                                </ul>
+                              </div>
+                            </div>
+                            {{/each}}
+
+                          </section>
+                        </script>
                     </article>
                     <!-- 갤시콘 배너 -->
                     <article>
@@ -370,96 +392,29 @@
                             <div class="box_tit">
                                 <h3 class="tit">실북갤</h3>
                                 <span class="box_menu">
-                                    <a href="javacript:void(0)" class="rank_gall gallRankTab on">메인</a>
-                                    <a href="javacript:void(0)" class="rank_mgall mgallRankTab">마이너</a>
-                                    <a href="javacript:void(0)" class="rank_mini minigallRankTab">미니</a>
+                                    <a href="#" class="rank_gall gallRankTab on">메인</a>
+                                    <a href="#" class="rank_mgall mgallRankTab">마이너</a>
+                                    <a href="#" class="rank_mini minigallRankTab">미니</a>
                                 </span>
                             </div>
                             <!-- 각 갤 마다 ol 5개 => 1위 부터 50위 까지 -->
                             <!-- 각 ol마다 li 10개 -->
-                            <ol class="rank_list gall g_1">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>1</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>2</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">1</span>
-                                        <span class="sp_img ico_ranking up"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>3</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">1</span>
-                                        <span class="sp_img ico_ranking up"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>4</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">2</span>
-                                        <span class="sp_img ico_ranking down"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>5</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>6</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>7</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>8</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>9</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>10</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <div class="box_bottom rank_more">11위 - 20위</div>
+                            <ol class="rank_list gall g_1" style="display:none;"></ol>
+                            <ol class="rank_list gall g_2" style="display:none;"></ol>
+                            <ol class="rank_list gall g_3" style="display:none;"></ol>
+                            <ol class="rank_list gall g_4" style="display:none;"></ol>
+                            <ol class="rank_list gall g_5" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_1" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_2" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_3" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_4" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_5" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_1" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_2" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_3" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_4" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_5" style="display:none;"></ol>
+                            <div class="box_bottom rank_more" data-gall_type="g" data-page="0">11위 - 20위</div>
                         </div>
                     </article>
                     <!-- 오른쪽 광고 배너 -->
@@ -475,136 +430,27 @@
                                 </span>
                                 <h3 class="tit">흥한갤</h3>
                                 <span class="box_menu">
-                                    <a href="javascript:void(0)" class="rank_gall on">메인</a>
-                                    <a href="javascript:void(0)" class="rank_mgall">마이너</a>
-                                    <a href="javascript:void(0)" class="rank_mini">미니</a>
+                                    <a href="#" class="rank_gall gallRankTab on">메인</a>
+                                    <a href="#" class="rank_mgall mgallRankTab">마이너</a>
+                                    <a href="#" class="rank_mini minigallRankTab">미니</a>
                                 </span>
                             </div>
-                            <ol class="rank_list gall g_1">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">1</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">2</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">3</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">4</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">5</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">6</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">7</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">8</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">9</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">10</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <ol class="rank_list gall g_2" style="display: none;">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">11</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">12</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">13</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">14</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">15</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">16</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">17</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">18</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">19</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">20</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <div class="box_bottom hot_more" gall_type="g" page="1" style="cursor: pointer;">11위 - 20위</div>
+                            <ol class="rank_list gall g_1" style="display: none;"></ol>
+                            <ol class="rank_list gall g_2" style="display: none;"></ol>
+                            <ol class="rank_list gall g_3" style="display: none;"></ol>
+                            <ol class="rank_list gall g_4" style="display: none;"></ol>
+                            <ol class="rank_list gall g_5" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_1" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_2" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_3" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_4" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_5" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_1" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_2" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_3" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_4" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_5" style="display: none;"></ol>
+                            <div class="box_bottom hot_more" data-gall_type="g" data-page="0" style="cursor: pointer;">11위 - 20위</div>
                         </div>
                     </article>
                     <!-- 신생 갤 -->

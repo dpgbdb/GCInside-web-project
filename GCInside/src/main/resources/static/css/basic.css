@@ -345,11 +345,11 @@
 .empty_visit{float:left;padding-left:19px;font-size:12px;color:#999}
 
 .newvisit_history .bnt_visit_prev, .newvisit_history .bnt_visit_next{top:13px}
-.newvisit_history .bnt_visit_prev{margin-left:15px;margin-right:9px;top:0} /** 2023/03/30 // 심규영 // top:0 // 에러 수정 */
+.newvisit_history .bnt_visit_prev{margin-left:15px;margin-right:9px;top:12px} /** 2023/03/30 // 심규영 // top:0 // 에러 수정 */
 .newvisit_history .bnt_visit_next{right:51px}
 
 .newvisit_history {
-    display: flex;/** 2023/03/30 // 심규영 // 에러 수정 */
+    /*display: flex;* 2023/03/30 // 심규영 // 에러 수정 */
     position: relative;
     width: 1000px;
     height: 38px;
@@ -559,7 +559,7 @@ background-image:url(../img/sp_img.png);background-repeat:no-repeat;background-p
 .concept_con .con_list.txt a{width:347px}
 
 /* 광고 */
-.leftbanner{overflow:hidden;width:728px;height:90px;margin-top:15px}
+.leftbanner{overflow:hidden;width:728px;height:125px;margin-top:15px}
 .rightbanner{overflow:hidden;width:250px;height:250px;margin-top:15px}
 
 /* 갤시 콘 */
